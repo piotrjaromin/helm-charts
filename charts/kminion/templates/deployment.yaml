@@ -112,6 +112,10 @@ spec:
             - name: {{.secretName}}
               mountPath: {{.mountPath}}
             {{- end}}
+            {{- range .Values.deployment.volumes.mounts}}
+            - name: {{.name}}
+              mountPath: {{.mountPath}}
+            {{- end}}
           resources:
             {{- toYaml .Values.resources | nindent 12}}
           {{- if .Values.deployment.readinessProbe.enabled }}
